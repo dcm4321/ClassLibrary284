@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace ClassLibrary284
 {
+    /// <summary>
+    /// enumerate over a low/high range of ints
+    /// </summary>
     public class RangeEnumerator: IEnumerator<int>
     {
         private readonly int _low;

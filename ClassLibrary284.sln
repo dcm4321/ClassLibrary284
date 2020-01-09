@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary284", "ClassLib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTesting", "UnitTesting\UnitTesting.csproj", "{07A9BAC2-1472-418F-840F-4AB3D2D1D8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listify", "Listify\Listify.csproj", "{E979CC41-C26E-4E93-A211-B9E1D36B5D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Listify", "Listify\Listify.csproj", "{E979CC41-C26E-4E93-A211-B9E1D36B5D7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA386FA6-B056-43A5-9B4E-D68338CEEBD0}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

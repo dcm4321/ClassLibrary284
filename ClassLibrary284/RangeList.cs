@@ -6,6 +6,12 @@ using System.Collections.Generic;
 
 namespace ClassLibrary284
 {
+    /// <summary>
+    /// read-only range list.
+    /// This list must be read-only since it's
+    /// a) "fully populated" at creation time and
+    /// b) by the definition of the list, changes are not allowed
+    /// </summary>
     public class RangeList: IReadOnlyList<int>
     {
         public int Low { get; }
@@ -19,6 +25,9 @@ namespace ClassLibrary284
             Low = low;
             High = high;
         }
+
+        static public RangeList Range(int low, int count) => new RangeList(low, low + count - 1);
+
         #region enumeration
         public IEnumerator<int> GetEnumerator() => new RangeEnumerator(Low, High);
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -34,10 +43,6 @@ namespace ClassLibrary284
 
         public int IndexOf(int item) => Contains(item) ? item - Low : -1;
 
-        static private int IndexOutOfRange()
-        {
-            throw new IndexOutOfRangeException();
-        }
-        public int this[int index] => 0 <= index && index < Count ? Low + index : IndexOutOfRange();
+        public int this[int index] => 0 <= index && index < Count ? Low + index : throw new IndexOutOfRangeException();
     }
 }

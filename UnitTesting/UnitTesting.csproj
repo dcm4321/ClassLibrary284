@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary284\ClassLibrary284.csproj" />
+    <ProjectReference Include="..\Listify\Listify.csproj" />
   </ItemGroup>
 
 </Project>
