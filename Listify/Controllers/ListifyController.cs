@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace Listify.Controllers
 {
     /// <summary>
-    /// api controller for indexed an range list
+    /// api controller for accessing a range list
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class ListifyController : ControllerBase
     {
         /// <summary>
-        /// 
+        /// range list accessor
         /// </summary>
         /// <param name="low">low of range</param>
-        /// <param name="high">hi or range</param>
-        /// <param name="index">0-based index in range</param>
+        /// <param name="high">high or range</param>
+        /// <param name="index">0-based accessor index for range: low..high</param>
         /// <returns>corr. ranged list value i.e. low + index</returns>
         [HttpGet("{low:int}/{high:int}/{index:int}")]
         public ActionResult<int> Get(int low, int high, int index)

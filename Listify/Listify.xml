@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Listify</name>
+    </assembly>
+    <members>
+        <member name="T:Listify.Controllers.ListifyController">
+            <summary>
+            api controller for accessing a range list
+            </summary>
+        </member>
+        <member name="M:Listify.Controllers.ListifyController.Get(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            range list accessor
+            </summary>
+            <param name="low">low of range</param>
+            <param name="high">high or range</param>
+            <param name="index">0-based accessor index for range: low..high</param>
+            <returns>corr. ranged list value i.e. low + index</returns>
+        </member>
+    </members>
+</doc>

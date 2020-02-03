@@ -1,15 +1,18 @@
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using System.IO;
+
+using System.Reflection;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+using Microsoft.OpenApi.Models;
 
 namespace Listify
 {
@@ -22,10 +25,22 @@ namespace Listify
 
         public IConfiguration Configuration { get; }
 
+        private const string swagpoint = "doc";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(swagpoint, new OpenApiInfo { Title = "Listifier", Version = "v1" });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +52,18 @@ namespace Listify
             }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                // done this way per: https://stackoverflow.com/questions/52871883/swagger-ui-showing-fetch-error-not-found/52950819
+                c.SwaggerEndpoint($"/swagger/{swagpoint}/swagger.json", "Listifier v1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
